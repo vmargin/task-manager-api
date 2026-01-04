@@ -68,10 +68,10 @@ app.use("/tasks", auth);
 
 // Create a task
 app.post("/tasks", async (req, res) => {
-  const { title, description, status, userId } = req.body;
+  const { title, description, status, userId: req.userId } = req.body;
   try {
     const task = await prisma.task.create({
-      data: { title, description, status, userId },
+      data: { title, description, status, userId: req.userId },
     });
     res.json(task);
   } catch (error) {
