@@ -68,10 +68,16 @@ app.use("/tasks", auth);
 
 // Create a task
 app.post("/tasks", async (req, res) => {
-  const { title, description, status, userId: req.userId } = req.body;
+    console.log("User from middleware:", req.user); // Check the logs!
+  const { title, description, status } = req.body; // Remove userId from here
   try {
     const task = await prisma.task.create({
-      data: { title, description, status, userId: req.userId },
+      data: { 
+        title, 
+        description, 
+        status, 
+        userId: req.user.userId // This must match what you named it in your auth.js
+      },
     });
     res.json(task);
   } catch (error) {
