@@ -8,6 +8,9 @@ const bcrypt = require("bcrypt");
 const app = express();
 const prisma = new PrismaClient();
 
+const cors = require("cors");
+app.use(cors()); // Place this before your routes
+
 app.use(express.json());
 
 // Health check
