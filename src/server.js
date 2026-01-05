@@ -81,7 +81,8 @@ app.post("/tasks", async (req, res) => {
         title, 
         description, 
         status, 
-        userId: req.user.userId // Matches the payload in login token
+        userId: req.user.userId, // Matches the payload in login token
+        status: "todo" // Add this line!
       },
     });
     res.json(task);

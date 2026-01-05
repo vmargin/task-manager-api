@@ -19,7 +19,7 @@ model Task {
   id          String   @id @default(uuid())
   title       String
   description String
-  status      String
+  status      String   @default("todo")
   userId      String
   createdAt   DateTime @default(now())
 
